@@ -52,3 +52,10 @@ class ConvNet(nn.Module):
     )
   def forward(self,x):
     return self.initial_model(x)
+  
+
+
+
+clf = ConvNet().to('cuda')
+opt = Adam(clf.parameters(), lr=1e-3)
+loss_fn = nn.CrossEntropyLoss()
