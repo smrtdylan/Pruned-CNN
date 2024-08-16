@@ -1,19 +1,22 @@
-import main
 import network
+from torch import nn,save,load
+import torch
+from PIL import Image
+
 if __name__ == "__main__":
     for epoch in range(11): # train for 10 epochs
-        for batch in dataset:
+        for batch in network.dataset:
             X,y = batch
             X, y = X.to('cuda'), y.to('cuda')
-            yhat = clf(X)
-            loss = loss_fn(yhat, y)
+            yhat = network.clf(X)
+            loss = network.loss_fn(yhat, y)
 
             # Apply backprop
-            opt.zero_grad()
+            network.opt.zero_grad()
             loss.backward()
-            opt.step()
+            network.opt.step()
 
         print(f"Epoch {epoch+1}: loss is {loss.item()}")
 
     with open('model_state.pt', 'wb') as f:
-        save(clf.state_dict(), f)
+        network.save(clf.state_dict(), f)

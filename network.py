@@ -1,7 +1,5 @@
-import torch
-from PIL import Image
-from torch import nn,save,load
-from torch.optim import Adam
+
+from torch import nn
 from torch.utils.data import DataLoader
 
 from torchvision import datasets, transforms # Import transforms
@@ -56,6 +54,3 @@ class ConvNet(nn.Module):
 
 
 
-clf = ConvNet().to('cuda')
-opt = Adam(clf.parameters(), lr=1e-3)
-loss_fn = nn.CrossEntropyLoss()
